@@ -3,7 +3,6 @@ import argentBankLogo from "../assets/argentBankLogo.png"
 function Header() {
 
     const URL = window.location.href
-    console.log(URL)
 
     return (
         <header>

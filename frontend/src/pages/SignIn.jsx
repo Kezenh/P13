@@ -1,4 +1,14 @@
+import getSignInToken from "../services/getSignInToken"
+
 function SignIn() {
+
+    async function submitSignIn() {
+        const username = document.getElementById("username")
+        const password = document.getElementById("password")
+        const token = await getSignInToken(username, password)
+        console.log("Token :", token)
+    }
+
     return (
         <main className="main bg-dark">
             <section className="sign-in-content">
@@ -17,7 +27,7 @@ function SignIn() {
                         <input type="checkbox" id="remember-me" />
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
-                    <a href="/user" className="sign-in-button">Sign In</a>
+                    <input type="button" className="sign-in-button" value="Sign In" onClick={submitSignIn} />
                 </form>
             </section>
         </main>
