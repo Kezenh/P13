@@ -1,4 +1,5 @@
 import getSignInToken from "../services/getSignInToken"
+import getUserDatas from "../services/getUserDatas"
 
 function SignIn() {
 
@@ -6,7 +7,7 @@ function SignIn() {
         const username = document.getElementById("username")
         const password = document.getElementById("password")
         const token = await getSignInToken(username, password)
-        console.log("Token :", token)
+        const datas = await getUserDatas(token)
     }
 
     return (
