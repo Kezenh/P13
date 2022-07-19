@@ -1,13 +1,26 @@
 import getSignInToken from "../services/getSignInToken"
 import getUserDatas from "../services/getUserDatas"
+import { store, tokenFetched, datasFetched } from "../redux/store"
 
 function SignIn() {
 
     async function submitSignIn() {
+        await dispatchToken()
+        console.log(store.getState().token)
+        await dispatchDatas()
+        console.log(store.getState().datas)
+    }
+
+    async function dispatchToken() {
         const username = document.getElementById("username")
         const password = document.getElementById("password")
         const token = await getSignInToken(username, password)
-        const datas = await getUserDatas(token)
+        store.dispatch(tokenFetched(token))
+    }
+
+    async function dispatchDatas() {
+        const datas = await getUserDatas(store.getState().token)
+        store.dispatch(datasFetched(datas))
     }
 
     return (
