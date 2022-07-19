@@ -1,14 +1,20 @@
 async function getSignInToken(email, password) {
-    console.log("Email :", email.value)
-    console.log("Password :", password.value)
+  const mail = email.value
+  const word = password.value
+    console.log("Email :", mail)
+    console.log("Password :", word)
+
     const requestOptions = {
     method: 'POST',
+    headers: {
+      "Content-Type": "application/json" 
+    },
     body: JSON.stringify({
-        "email": "toto",
-        "password": "tata"
+        "email": mail,
+        "password": word
       })
+    
     }
-    console.log(fetch('http://localhost:3001/api/v1/user/login', requestOptions)) 
     return fetch('http://localhost:3001/api/v1/user/login', requestOptions)
 }
 
