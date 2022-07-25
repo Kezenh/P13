@@ -2,7 +2,7 @@ import { createStore } from "redux"
 
 const initialState = {
     token: "",
-    datas: {}
+    datas: ""
 }
 
 export function tokenFetched(token) {
@@ -23,11 +23,11 @@ export function datasFetched(datas) {
     }
 }
 
-function reducer(state, action) {
+function reducer(state = initialState, action) {
     if (action.type === "datasFetched") {
         return {
             ...state,
-            datas: action.payload.datas
+            datas: action.payload.datas || {}
         }
 
     }
@@ -42,4 +42,4 @@ function reducer(state, action) {
     return state
 }
 
-export let store = createStore(reducer, initialState)
+export  const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())

@@ -1,26 +1,49 @@
 import getSignInToken from "../services/getSignInToken"
 import getUserDatas from "../services/getUserDatas"
-import { store, tokenFetched, datasFetched } from "../redux/store"
+import { tokenFetched, datasFetched } from "../redux/store"
+import { useSelector, useDispatch } from "react-redux"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 function SignIn() {
 
-    async function submitSignIn() {
-        await dispatchToken()
-        console.log(store.getState().token)
-        await dispatchDatas()
-        console.log(store.getState().datas)
+    const token = useSelector(state => state.token)
+    const datas = useSelector(state => state.datas)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (token) {
+            dispatchDatas()
+        }
+        // eslint-disable-next-line
+    }, [token])
+
+    useEffect(() => {
+        if (datas) {
+            navigateToUser()
+        }
+        // eslint-disable-next-line
+    }, [datas])
+
+    function submitSignIn() {
+        dispatchToken()
     }
 
     async function dispatchToken() {
         const username = document.getElementById("username")
         const password = document.getElementById("password")
         const token = await getSignInToken(username, password)
-        store.dispatch(tokenFetched(token))
+        dispatch(tokenFetched(token))
     }
 
     async function dispatchDatas() {
-        const datas = await getUserDatas(store.getState().token)
-        store.dispatch(datasFetched(datas))
+        const datas = await getUserDatas(token)
+        dispatch(datasFetched(datas))
+    }
+
+    function navigateToUser() {
+        navigate("/user")
     }
 
     return (
