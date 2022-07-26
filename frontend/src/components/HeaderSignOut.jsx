@@ -1,6 +1,6 @@
 import argentBankLogo from "../assets/argentBankLogo.png"
 
-function Header() {
+function HeaderSignOut() {
 
     return (
         <header>
@@ -14,9 +14,13 @@ function Header() {
                     <h1 className="sr-only">Argent Bank</h1>
                 </a>
                 <div>
-                    <a className="main-nav-item" href="/sign-in">
+                    <a className="main-nav-item" href="/user">
                         <i className="fa fa-user-circle"></i>
-                        Sign In
+                        Tony
+                    </a>
+                    <a className="main-nav-item" href="/">
+                        <i className="fa fa-sign-out"></i>
+                        Sign Out
                     </a>
                 </div>
             </nav>
@@ -24,4 +28,4 @@ function Header() {
     )
 }
 
-export default Header
+export default HeaderSignOut
