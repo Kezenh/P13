@@ -292,3 +292,15 @@ body {
     width: 200px;
   }
 }
+
+.fa {
+  font-weight: bold;
+  color: #2c3e50;
+  font-style: normal;
+  margin-right: 20px
+}
+
+.fa:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

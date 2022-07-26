@@ -1,6 +1,15 @@
 import argentBankLogo from "../assets/argentBankLogo.png"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 function HeaderSignOut() {
+
+    const datas = useSelector(state => state.datas)
+    const navigate = useNavigate()
+
+    function navigateToUser() {
+        navigate("/user")
+    }
 
     return (
         <header>
@@ -14,12 +23,10 @@ function HeaderSignOut() {
                     <h1 className="sr-only">Argent Bank</h1>
                 </a>
                 <div>
-                    <a className="main-nav-item" href="/user">
-                        <i className="fa fa-user-circle"></i>
-                        Tony
-                    </a>
+                    <i className="fa fa-user-circle" onClick={navigateToUser}>
+                        {datas.firstName}
+                    </i>
                     <a className="main-nav-item" href="/">
-                        <i className="fa fa-sign-out"></i>
                         Sign Out
                     </a>
                 </div>
