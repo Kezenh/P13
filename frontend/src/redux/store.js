@@ -2,7 +2,8 @@ import { createStore } from "redux"
 
 const initialState = {
     token: "",
-    datas: ""
+    datas: "",
+    modalIsOpen: false
 }
 
 export function tokenFetched(token) {
@@ -23,6 +24,12 @@ export function datasFetched(datas) {
     }
 }
 
+export function changeModalState() {
+    return {
+        type: "changeModalState",
+    }
+}
+
 function reducer(state = initialState, action) {
     if (action.type === "datasFetched") {
         return {
@@ -36,6 +43,13 @@ function reducer(state = initialState, action) {
         return {
             ...state,
             token: action.payload.token
+        }
+    }
+
+    if (action.type === "changeModalState") {
+        return {
+            ...state,
+            modalIsOpen: !state.modalIsOpen
         }
     }
 

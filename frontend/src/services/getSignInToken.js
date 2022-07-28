@@ -5,8 +5,8 @@ async function getSignInToken(email, password) {
     method: 'POST',
     headers: {
       "Content-Type": "application/json" 
-  },
-  body: JSON.stringify({
+    },
+    body: JSON.stringify({
       "email": mail,
       "password": word
     })  

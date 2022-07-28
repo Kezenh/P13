@@ -1,18 +1,32 @@
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import HeaderSignOut from "../components/HeaderSignOut"
+import EditNameModal from "../components/EditNameModal"
+import { changeModalState } from "../redux/store"
 
 function User() {
 
+    const dispatch = useDispatch()
     const token = useSelector(state => state.token)
     const datas = useSelector(state => state.datas)
+    const modalIsOpen = useSelector(state => state.modalIsOpen)
+
+    function OpenCloseModal() {
+        dispatch(changeModalState())
+    }
 
     return (
         <>
             <HeaderSignOut />
             <main className="main bg-dark">
                 <div className="header">
-                    <h1>Welcome back<br />{`${datas.firstName} ${datas.lastName}`}</h1>
-                    <button className="edit-button">Edit Name</button>
+                    <h1>Welcome back</h1>
+                    {modalIsOpen ?
+                        <EditNameModal /> :
+                        <>
+                            <h1>{`${datas.firstName} ${datas.lastName}`}</h1>
+                            <button className="edit-button" onClick={OpenCloseModal}>Edit Name</button>
+                        </>
+                    }
                 </div>
                 <h2 className="sr-only">Accounts</h2>
                 <section className="account">

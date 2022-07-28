@@ -304,3 +304,30 @@ body {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.buttonForm {
+  width: 100px;
+  height: 30px;
+  margin: 10px 10px 0 0;
+  border-radius: 1px;
+  border: 2px solid rgb(169, 172, 234);
+  color: rgb(107, 109, 238);
+  background: white;
+  font-weight: 600;
+}
+
+.buttonForm:hover {
+  cursor: pointer;
+}
+
+.inputForm {
+  width: 165px;
+  height: 35px;
+  margin: 0 10px 0 0;
+  border-radius: 1px;
+  border: 2px solid grey;
+  color: grey;
+  background: white;
+  font-weight: 600;
+  padding: 0 0 0 10px;
+}
