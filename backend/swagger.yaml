@@ -110,19 +110,49 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/transaction:
+  /user/transactions:
     post:
       security:
         - Bearer: []
       tags:
         - User Module
-      summary: Transaction API
+      summary: Transactions API
       description: API for fetching a user transactions
       parameters:
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User transactions retrieved successully
+          schema:
+            $ref: '#/definitions/Transactions'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/transactions/{id}:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: Transactions API
+      description: API for fetching a user transaction
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: path
+          name: id
+          schema: 
+            type: "string"
+          required: true
+          description: Id of the transaction
       produces:
         - application/json
       responses:
@@ -146,6 +176,12 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+        - in: path
+          name: id
+          schema: 
+            type: "string"
+          required: true
+          description: Id of the transaction
         - in: body
           name: body
           description: Update transaction attributes
@@ -207,7 +243,7 @@ definitions:
             type: string
           email:
             type: string
-  TransactionResponse:
+  Transactions:
     type: object
     properties:
       status:
@@ -221,21 +257,7 @@ definitions:
           properties:
             id:
               type: string
-            date:
-              type: string
-            description:
-              type: string
-            amount:
-              type: number
-            balance:
-              type: number
-            category:
-              type: string
-            transactionType:
-              type: string
-            notes:
-              type: string
-  TransactionChange:
+  TransactionResponse:
     type: object
     properties:
       status:
@@ -247,6 +269,30 @@ definitions:
         properties:
           id:
             type: string
+          date:
+            type: string
+          description:
+            type: string
+          amount:
+            type: number
+          balance:
+            type: number
+          category:
+            type: string
+          transactionType:
+            type: string
+          notes:
+            type: string            
+  TransactionChange:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
           notes:
             type: string
           category:

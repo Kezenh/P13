@@ -15,7 +15,6 @@ function EditNameModal() {
     async function editName() {
         const firstName = document.getElementById("firstNameChange")
         const lastName = document.getElementById("lastNameChange")
-        console.log(lastName.value)
         const datas = await updateProfile(token, firstName.value, lastName.value)
         dispatch(datasFetched(datas))
         OpenCloseModal()
