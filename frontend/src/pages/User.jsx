@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux"
 import HeaderSignOut from "../components/HeaderSignOut"
 import EditNameModal from "../components/EditNameModal"
 import { changeModalState } from "../redux/store"
+import { useEffect } from "react"
 
 function User() {
 
@@ -9,6 +10,13 @@ function User() {
     const token = useSelector(state => state.token)
     const datas = useSelector(state => state.datas)
     const modalIsOpen = useSelector(state => state.modalIsOpen)
+
+    useEffect(() => {
+        if (token === "") {
+            window.location.href = "/"
+        }
+        // eslint-disable-next-line
+    }, [])
 
     function OpenCloseModal() {
         dispatch(changeModalState())
