@@ -15,7 +15,10 @@ async function getSignInToken(email, password) {
   return fetch('http://localhost:3001/api/v1/user/login', requestOptions)
   .then(response => response.json())
   .then(response => response.body.token)
-.catch(error => console.log("Error :", error))
+.catch(error => {
+    console.log("Error :", error)
+    document.getElementById("error").innerText = `Erreur : ${error}`
+  })
 }
 
 export default getSignInToken

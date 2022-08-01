@@ -69,6 +69,7 @@ function SignIn() {
                         </div>
                         <input type="button" className="sign-in-button" value="Sign In" onClick={submitSignIn} />
                     </form>
+                    <p id="error"></p>
                 </section>
             </main>
         </>
